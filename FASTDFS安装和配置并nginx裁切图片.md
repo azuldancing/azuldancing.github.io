@@ -13,12 +13,10 @@
 
 
 
-### 单机安装部署（CentOS 6.7 环境）
+### 单机安装部署（CentOS 6 环境）
 
-- 环境准备：
-    - 已经安装好 Nginx
 - 软件准备：
-    - **FastDFS_v5.05.tar.gz**
+    - **FastDFS_v5.08.tar.gz**
     - **fastdfs-nginx-module_v1.16.tar.gz**
     - **libfastcommon-1.0.7.tar.gz**
 - 安装依赖包：`yum install -y libevent`
@@ -32,7 +30,7 @@
     - 设置几个软链接：`ln -s /usr/lib64/libfdfsclient.so /usr/local/lib/libfdfsclient.so`  
     - 设置几个软链接：`ln -s /usr/lib64/libfdfsclient.so /usr/lib/libfdfsclient.so` 
 - 安装 tracker （跟踪器）服务 **FastDFS_v5.08.tar.gz**
-    - 解压：`tar zxvf FastDFS_v5.05.tar.gz`
+    - 解压：`tar zxvf FastDFS_v5.08.tar.gz`
     - 进入解压后目录：`cd FastDFS/`
     - 编译：`./make.sh`
     - 安装：`./make.sh install`
