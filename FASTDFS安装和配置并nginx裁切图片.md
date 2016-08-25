@@ -211,6 +211,8 @@
     - 复制文件：`cp /opt/setups/FastDFS/FastDFS/conf/http.conf /etc/fdfs`
     - 复制文件：`cp /opt/setups/FastDFS/FastDFS/conf/mime.types /etc/fdfs`
 - 安装 Nginx 和 Nginx 第三方模块
+    - http_image_filter_module是nginx提供的集成图片处理模块，支持nginx-0.7.54以后的版本，在网站访问量不是很高磁盘有限不想生成多
+    - 余的图- 片文件的前提下可，就可以用它实时缩放图片，旋转图片，验证图片有效性以及获取图片宽高以及图片类型信息。 
     - 安装 Nginx 依赖包：`yum install -y gcc gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel`
     - 预设几个文件夹，方便等下安装的时候有些文件可以进行存放：
         - `mkdir -p /usr/local/nginx /var/log/nginx /var/temp/nginx /var/lock/nginx`
@@ -218,19 +220,25 @@
     - 进入解压后目录：`cd /opt/setups/nginx-1.8.1/`
     - 编译配置：（注意最后一行）
     ``` ini
-    ./configure \
-    --prefix=/usr/local/nginx \
-    --pid-path=/var/local/nginx/nginx.pid \
-    --lock-path=/var/lock/nginx/nginx.lock \
-    --error-log-path=/var/log/nginx/error.log \
-    --http-log-path=/var/log/nginx/access.log \
+    ./configure --prefix=/usr/local/nginx \
+    --user=www \
+    --group=www \
+    --sbin-path=/usr/sbin/nginx \
+    --conf-path=/etc/nginx/nginx.conf \
+    --pid-path=/var/run/nginx.pid  \
+    --lock-path=/var/run/nginx.lock \
+    --error-log-path=/var/logs/nginx/error.log \
+    --http-log-path=/var/logs/nginx/access.log \
+    --with-http_ssl_module \
+    --with-http_image_filter_module \
     --with-http_gzip_static_module \
-    --http-client-body-temp-path=/var/temp/nginx/client \
-    --http-proxy-temp-path=/var/temp/nginx/proxy \
-    --http-fastcgi-temp-path=/var/temp/nginx/fastcgi \
-    --http-uwsgi-temp-path=/var/temp/nginx/uwsgi \
-    --http-scgi-temp-path=/var/temp/nginx/scgi \
-    --add-module=/opt/setups/FastDFS/fastdfs-nginx-module/src
+    --with-http_stub_status_module \
+    --with-http_addition_module \
+    --with-http_spdy_module \
+    --with-pcre=/usr/local/src/pcre-8.38 \
+    --with-openssl=/usr/local/src/openssl \
+    --with-zlib=/usr/local/src/zlib-1.2.8 \
+    --add-module=/usr/local/src/fastdfs-nginx-module/src
     ```
     - 编译：`make`
     - 安装：`make install`
@@ -296,8 +304,48 @@
             location /group1/M00 {
                 ngx_fastdfs_module;
             }
-          }
-    }
+            
+            #前裁切
+        location ~ ([0-9]+)x([0-9]+)/group1/M00/(.+)\.(jpg|gif|png) {
+        	alias /data0/fastdfs/storage/storage0/data;
+        	ngx_fastdfs_module;
+        	set $w $1;
+        	set $h $2;           
+        	if ($w != "0") {
+        		rewrite ([0-9]+)x([0-9]+)/group1/M00(.+)\.(jpg|gif|png)$ group1/M00$3.$4 break;
+        	}
+        	if ($h != "0") {
+        		rewrite ([0-9]+)x([0-9]+)/group1/M00(.+)\.(jpg|gif|png)$ group1/M00$3.$4 break;
+        	}
+        	#根据给定的长宽生成缩略图   
+        	image_filter resize $w $h;
+        	
+        	#原图最大2M，要裁剪的图片超过2M返回415错误，需要调节参数image_filter_buffer  
+        	image_filter_buffer 2M;
+        	#try_files group1/M00$1.$4 $1.jpg;
+        }
+        
+        #后裁切
+        location ~ group1/M00/(.+)\.(jpg|gif|png)_([0-9]+)x([0-9]+) {
+        	alias /data0/fastdfs/storage/storage0/data;
+        	ngx_fastdfs_module;
+        	set $w $3;
+        	set $h $4;           
+        	if ($w != "0") {
+        		rewrite group1/M00(.+)\.(jpg|gif|png)_([0-9]+)x([0-9]+)$ group1/M00$1.$2 break;
+        	}
+        	if ($h != "0") {
+        		rewrite group1/M00(.+)\.(jpg|gif|png)_([0-9]+)x([0-9]+)$ group1/M00$1.$2 break;
+        	}
+        	#根据给定的长宽生成缩略图   
+        	image_filter resize $w $h;
+        	
+        	#原图最大2M，要裁剪的图片超过2M返回415错误，需要调节参数image_filter_buffer  
+        	image_filter_buffer 2M;
+        	#try_files group1/M00$1.$4 $1.jpg;
+                     }
+                  }
+            }
     ```
     - 启动 Nginx
         - 停掉防火墙：`service iptables stop`
@@ -309,15 +357,29 @@
         - 如果访问不了，或是出现其他信息看下错误立即：`vim /var/log/nginx/error.log`
 
 
-### 多机安装部署（CentOS 6.7 环境）
 
-
-http://blog.csdn.net/ricciozhang/article/details/49402273
-
-
-
-## 资料
-
-- [fastdfs+nginx安装配置](http://blog.csdn.net/ricciozhang/article/details/49402273)
-
-
+##报错问题解决办法
+###1.测试配置文件时报：
+/usr/local/nginx/sbin/nginx: error while loading shared libraries: libluajit-5.1.so.2: cannot open shared object file: No such file or directory
+解决方法：
+```init
+[root@facade26 /usr/local/src/tengine-2.1.0 01:41:13&&73]#find / -name 'libluajit*'
+/usr/local/src/LuaJIT-2.0.3/src/libluajit.a
+/usr/local/src/LuaJIT-2.0.3/src/libluajit.so
+/usr/local/lib/libluajit-5.1.so
+/usr/local/lib/libluajit-5.1.a
+/usr/local/lib/libluajit-5.1.so.2
+/usr/local/lib/libluajit-5.1.so.2.0.3
+复制代码
+[root@facade26 /usr/local/src/tengine-2.1.0 01:42:40&&76]#ln -s /usr/local/lib/libluajit-5.1.so.2 /usr/lib64/
+```
+###2.在配置nginx 时提示如下错误时
+```init
+nginx: [emerg] getpwnam(“www”) failed
+解决方案一
+在nginx.conf中 把user nobody的注释去掉既可
+解决方案二
+错误的原因是没有创建www这个用户，应该在服务器系统中添加www用户组和用户www，如下命令：
+/usr/sbin/groupadd -f www
+/usr/sbin/useradd -g www www
+```
