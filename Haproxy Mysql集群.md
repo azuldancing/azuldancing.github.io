@@ -11,7 +11,7 @@ cd /etc/default
 nano haproxy
 #把ENABLED改为1即可
 ```
-![FastDFS](images/haproxy11.jpg)
+![FastDFS](images/haproxy1.jpg)
 - mysql 创建用户
 
 
@@ -23,7 +23,7 @@ create user  haproxy
 ```
 - haproxy配置代理
 修改配置文件/etc/haproxy/haproxy.cfg，以下是修改后的代理配置案例
-![FastDFS](images/haproxy12.jpg)
+![FastDFS](images/haproxy2.jpg)
 
 - 重启haproxy
 ```
