@@ -36,13 +36,13 @@ hexo init
 #启动测试
 hexo server
 ```
-#此时控制台应该打印 如下语句 
+此时控制台应该打印 如下语句 
 INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.
-#测试访问 http://IP:4000
+测试访问 http://IP:4000
 
 - 安装扩展程序包
 
-![](/images/github.jpg)
+![](/images/github1.jpg)
 
 Hexo 提供了其他许多扩展插件，比如 git插件、快捷命令插件等
 ```
