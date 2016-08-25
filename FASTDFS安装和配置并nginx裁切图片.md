@@ -358,28 +358,28 @@
 
 
 
-- 报错问题解决办法
- - 测试配置文件时报：
-/usr/local/nginx/sbin/nginx: error while loading shared libraries: libluajit-5.1.so.2: cannot open shared object file: No such file or directory
-解决方法：
-```init
-[root@facade26 /usr/local/src/tengine-2.1.0 01:41:13&&73]#find / -name 'libluajit*'
-/usr/local/src/LuaJIT-2.0.3/src/libluajit.a
-/usr/local/src/LuaJIT-2.0.3/src/libluajit.so
-/usr/local/lib/libluajit-5.1.so
-/usr/local/lib/libluajit-5.1.a
-/usr/local/lib/libluajit-5.1.so.2
-/usr/local/lib/libluajit-5.1.so.2.0.3
-复制代码
-[root@facade26 /usr/local/src/tengine-2.1.0 01:42:40&&76]#ln -s /usr/local/lib/libluajit-5.1.so.2 /usr/lib64/
-```
-  - 在配置nginx 时提示如下错误时
-```init
-nginx: [emerg] getpwnam(“www”) failed
-解决方案一
-在nginx.conf中 把user nobody的注释去掉既可
-解决方案二
-错误的原因是没有创建www这个用户，应该在服务器系统中添加www用户组和用户www，如下命令：
-/usr/sbin/groupadd -f www
-/usr/sbin/useradd -g www www
-```
+        - 报错问题解决办法
+        - 测试配置文件时报：
+        /usr/local/nginx/sbin/nginx: error while loading shared libraries: libluajit-5.1.so.2: cannot open shared object file: No such file or directory
+        解决方法：
+        ```init
+        [root@facade26 /usr/local/src/tengine-2.1.0 01:41:13&&73]#find / -name 'libluajit*'
+        /usr/local/src/LuaJIT-2.0.3/src/libluajit.a
+        /usr/local/src/LuaJIT-2.0.3/src/libluajit.so
+        /usr/local/lib/libluajit-5.1.so
+        /usr/local/lib/libluajit-5.1.a
+        /usr/local/lib/libluajit-5.1.so.2
+        /usr/local/lib/libluajit-5.1.so.2.0.3
+        复制代码
+        [root@facade26 /usr/local/src/tengine-2.1.0 01:42:40&&76]#ln -s /usr/local/lib/libluajit-5.1.so.2 /usr/lib64/
+        ```
+          - 在配置nginx 时提示如下错误时
+        ```init
+        nginx: [emerg] getpwnam(“www”) failed
+        解决方案一
+        在nginx.conf中 把user nobody的注释去掉既可
+        解决方案二
+        错误的原因是没有创建www这个用户，应该在服务器系统中添加www用户组和用户www，如下命令：
+        /usr/sbin/groupadd -f www
+        /usr/sbin/useradd -g www www
+        ```
