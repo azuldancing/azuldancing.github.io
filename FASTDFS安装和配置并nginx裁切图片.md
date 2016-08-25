@@ -96,6 +96,12 @@ http.check_alive_interval=30
 http.check_alive_type=tcp
 http.check_alive_uri=/status.html
 ```
+- 在启动tracker之前先要把防火墙中对应的端口打开（本例中为22122）
+```init
+  iptables -I INPUT -p tcp -m state --state NEW -m tcp --dport 22122 -j ACCEPT
+  /etc/init.d/iptables save
+  iptables：将防火墙规则保存到 /etc/sysconfig/iptables：[确定]
+ ```
 - 启动 tracker 服务：`/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf`
 - 重启 tracker 服务：`/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart`
 - 查看是否有 tracker 进程：`ps aux | grep tracker`
