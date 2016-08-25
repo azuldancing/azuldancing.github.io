@@ -13,7 +13,7 @@
 从	Redis2	172.17.16.21	6379
 从	Redis3	172.17.16.22	6379
 ```
-3台服务器如上面表格所示
+- 3台服务器如上面表格所示
 A:首先修改主服务器Redis1
 ```
 vi /etc/redis/redis.cnf
@@ -40,11 +40,11 @@ redis-cli -h 127.0.0.1 -a redispass info replication
 redis-cli -h 127.0.0.1 -a redispass info replication
 ```
 ![](images/redis2.jpg)
-同步测试检查
-主服务器Redis1
+- 同步测试检查
+ - 主服务器Redis1
 ![](images/redis3.jpg)
 
-从服务器Redis2和Redis3检查
+ - 从服务器Redis2和Redis3检查
 ![](images/redis4.jpg)
 
 ###4.Redis sentinel配置
