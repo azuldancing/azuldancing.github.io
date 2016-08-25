@@ -14,6 +14,7 @@
 从	Redis3	172.17.16.22	6379
 ```
 - 3台服务器如上面表格所示
+
   A:首先修改主服务器Redis1
 ```
 vi /etc/redis/redis.cnf
