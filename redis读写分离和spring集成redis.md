@@ -23,14 +23,14 @@ masterauth  redispass
 requirepass  redispass
 bind 127.0.0.1注释掉，前面加#
 ```
-    B:修从服务器的配置，从服务Redis2和Redis3配置相同
+     B:修从服务器的配置，从服务Redis2和Redis3配置相同
 ```
 slaveof  172.17.16.7 6379
 masterauth  redispass
 requirepass  redispass
 bind 127.0.0.1注释掉，前面加#
 ```
-   C:分别启动主从服务器
+     C:分别启动主从服务器
 
 - 主从服务器从属信息查看如下：
 ```
