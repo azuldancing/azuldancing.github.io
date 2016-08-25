@@ -50,11 +50,11 @@ redis-cli -h 127.0.0.1 -a redispass info replication
 ###4.Redis sentinel配置
 
 
-sentinel主要功能就是为Redis M-S(master,slaves)集群提供了
+- sentinel主要功能就是为Redis M-S(master,slaves)集群提供了
 1)master存活检测
 2)集群中M-S服务监控
 3) 自动故障转移,M-S角色转换等能力,
-修改主服务器Redis1、Redis2、Redis3，配置相同
+- 修改主服务器Redis1、Redis2、Redis3，配置相同
 ```
 #vi命令
 vi /etc/redis/ sentinel.conf
@@ -66,31 +66,31 @@ sentinel down-after-milliseconds mymaster 30000
 sentinel failover-timeout mymaster 900000
 sentinel parallel-syncs mymaster 1
 ```
-在3个服务器中以sentinel模式启动redis-server，
+- 在3个服务器中以sentinel模式启动redis-server，
 ```
 root@Ubuntu-Base:/etc/redis# redis-sentinel sentinel.conf
 ```
 ![](images/redis5.jpg)
-关掉Redis3上的redis-server服务
+- 关掉Redis3上的redis-server服务
 ![](images/redis6.jpg)
-重新启动Redis3上的redis-server服务
+- 重新启动Redis3上的redis-server服务
 ![](images/redis7.jpg)
-关掉主Redis1的redis-server服务
+- 关掉主Redis1的redis-server服务
 ![](images/redis8.jpg)
 ![](images/redis8.jpg)
 ![](images/redis10.jpg)
 
 
-查看主从关系(redis1为主,redis3为从,如果redis1重新启动,也将为从服务器加入到新的集群)
+- 查看主从关系(redis1为主,redis3为从,如果redis1重新启动,也将为从服务器加入到新的集群)
 ![](images/redis11.jpg)
-重新启动Redis1，检查Redis2的主从关系
+- 重新启动Redis1，检查Redis2的主从关系
 ![](images/redis12.jpg)
-切换成功
+- 切换成功
 
 ###5.spring集成redis的集群
 
 
-在pom中引入需要的jar
+- 在pom中引入需要的jar
 ![](images/redis13.jpg)
 application-redis.xml配置
 ```
