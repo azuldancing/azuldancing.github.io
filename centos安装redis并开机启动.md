@@ -17,11 +17,9 @@ vim /etc/rc.local
 #在最后加入下面一行代码
  /usr/local/redis/bin/redis-server   /usr/local/redis/conf/redis.conf
  ```
- #####方案2
-
-
+#####方案2
 推荐在生产环境中使用启动脚本方式启动redis服务。启动脚本redis_init_script 位于位于Redis的 /utils/ 目录下。
-#大致浏览下该启动脚本，发现redis习惯性用监听的端口名作为配置文件等命名，我们后面也遵循这个约定。
+大致浏览下该启动脚本，发现redis习惯性用监听的端口名作为配置文件等命名，我们后面也遵循这个约定。
 ```
 #redis服务器监听的端口
 REDISPORT=6379
