@@ -32,8 +32,8 @@ PIDFILE=/var/run/redis_${REDISPORT}.pid
 #配置文件位置，需要修改
 CONF="/etc/redis/${REDISPORT}.conf"
 ```
-- 配置环境
- - 根据启动脚本要求，将修改好的配置文件以端口为名复制一份到指定目录。需使用root用户。
+配置环境
+- 根据启动脚本要求，将修改好的配置文件以端口为名复制一份到指定目录。需使用root用户。
 
 ```
 mkdir /etc/redis
@@ -43,7 +43,7 @@ cp redis.conf /etc/redis/6379.conf
 ```
 cp redis_init_script /etc/init.d/redisd
 ```
- - 设置为开机自启动
+- 设置为开机自启动
 
 ```
 #设置为开机自启动服务器
