@@ -91,6 +91,7 @@ root@Ubuntu-Base:/etc/redis# redis-sentinel sentinel.conf
 ###5.spring集成redis的集群
 
 - 在pom中引入需要的jar
+
 ![](images/redis13.jpg)
 - application-redis.xml配置
 ```
