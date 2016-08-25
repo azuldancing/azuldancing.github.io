@@ -1,9 +1,9 @@
 - 安装haproxy
 ```
-#在ubuntu下安装haproxy使用命令
+在ubuntu下安装haproxy使用命令
 apt-get install haproxy 既可以安装
 ```
-由于初步安装的haproxy是不可以使用的，需要修改
+ -由于初步安装的haproxy是不可以使用的，需要修改
 
 ```
 #使用命令
