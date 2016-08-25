@@ -4,15 +4,19 @@
 进入到solr的bin目录，创建solr Selector abl，命令如下
 
 ![](/images/solr1.jpg)
+
 修改abl的配置文件，目录位置如下
 
 ![](/images/solr2.jpg)
+
 修改managed-schema文件，这个文件是查询字段可以显示的配置和索引等配置，新增查询字段和索引，如下修改
 
 ![](/images/solr3.jpg)
+
 在solrconfig.xml文件中，配置data-config.xml文件的引入路径
 
 ![](/images/solr4.jpg)
+
 创建data-config.xml文件
 ```
 命令为：touch data-config.xml
