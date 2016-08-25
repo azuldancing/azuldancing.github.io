@@ -195,7 +195,7 @@ http.tracker_server_port=80
 ```
 - 在终端中通过 shell 上传 opt 目录下的一张图片：`/usr/bin/fdfs_test /etc/fdfs/client.conf upload /opt/test.jpg`
 - 如下图箭头所示，生成的图片地址为：`http://192.168.1.114/group1/M00/00/00/wKgBclb0aqWAbVNrAAAjn7_h9gM813_big.jpg`
- - ![FastDFS](images/FastDFS-a-1.jpg)
+![FastDFS](images/FastDFS-a-1.jpg)
 - 即使我们现在知道图片的访问地址我们也访问不了，因为我们还没装 FastDFS 的 Nginx 模块
 - 安装 **fastdfs-nginx-module_v1.16.tar.gz**，安装 Nginx 第三方模块相当于这个 Nginx 都是要重新安装一遍的
 - 解压 Nginx 模块：`tar zxvf fastdfs-nginx-module_v1.16.tar.gz`，得到目录地址：**/opt/setups/FastDFS/fastdfs-nginx-module**
