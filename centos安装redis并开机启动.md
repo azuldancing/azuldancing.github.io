@@ -39,7 +39,7 @@ CONF="/etc/redis/${REDISPORT}.conf"
 mkdir /etc/redis
 cp redis.conf /etc/redis/6379.conf
 ```
-- 将启动脚本复制到/etc/init.d目录下，本例将启动脚本命名为redisd（通常都以d结尾表示是后台自启动服务）。
+ - 将启动脚本复制到/etc/init.d目录下，本例将启动脚本命名为redisd（通常都以d结尾表示是后台自启动服务）。
 ```
 cp redis_init_script /etc/init.d/redisd
 ```
