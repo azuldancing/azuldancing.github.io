@@ -359,7 +359,7 @@
 
 
 - 报错问题解决办法
- - 1.测试配置文件时报：
+ - 测试配置文件时报：
 /usr/local/nginx/sbin/nginx: error while loading shared libraries: libluajit-5.1.so.2: cannot open shared object file: No such file or directory
 解决方法：
 ```init
@@ -373,7 +373,7 @@
 复制代码
 [root@facade26 /usr/local/src/tengine-2.1.0 01:42:40&&76]#ln -s /usr/local/lib/libluajit-5.1.so.2 /usr/lib64/
 ```
- - 2.在配置nginx 时提示如下错误时
+  - 在配置nginx 时提示如下错误时
 ```init
 nginx: [emerg] getpwnam(“www”) failed
 解决方案一
