@@ -688,7 +688,7 @@ System.out.println(result);
 ```
 第一个参数用于生成一个容器(ArrayList),第二个参数用于将 Stream 中的元素加入到前面生成的容器(list)中，第三个参数在并发时，用于将
 
-#####5.1.2、collect 简化版本
+######5.1.2、collect 简化版本
 
 clooect 还有一个 override 版本，如下：
 ```
