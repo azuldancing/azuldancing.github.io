@@ -53,5 +53,6 @@ solr重启：命令如下
 </bean>
 ```
 完整配置
+
 ![](/images/solr9.jpg)
 
