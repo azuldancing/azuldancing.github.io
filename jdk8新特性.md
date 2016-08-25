@@ -666,7 +666,7 @@ Stream.of(1,2,3,4,5).skip(2).forEach((i)-> System.out.println(i));
 可变汇聚：把输入的元素累积到一个可变容器中，比如 Collection或者 StringBuilder。
 其他汇聚：其他汇聚即除了可变汇聚之外的都称作其他汇聚，一般这些汇聚都是反复操作结果流，并通过前一次的结果流当做下一次的入参，最终形成一个结果，如 reduce，count，allMatch等。
 
-#####5.1、可变汇聚
+######5.1、可变汇聚
 
 可变汇聚对应的只有一个方法 Stream.collect()，该方法将流中处理后的元素汇聚到一个 容器中，比如 Collection；注意，Stream API 中对流处理操作并不会改变原有容器，比图 List.stream() 返回的流无论怎么处理，原来的 List 都不会受影响。
 
