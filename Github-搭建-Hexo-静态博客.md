@@ -254,7 +254,7 @@ ssh-keygen
 less ~/.ssh/id_rsa.pub
 ```
 设置 Github SSH Key
-登录 Github后访问 https://github.com/settings/ssh，选择 Add SSH key ,取个名字然后把内容粘进去，保存即可。
+登录 Github后访问 https://github.com/settings/ssh ，选择 Add SSH key ,取个名字然后把内容粘进去，保存即可。
 
 配置 Hexo 部署到 Github
 修改 Hexo 配置文件即可 如下
