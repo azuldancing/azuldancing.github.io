@@ -650,7 +650,7 @@ List<Integer> list = Stream.of(1,2,3,4,5).limit(3).collect(Collectors.toList());
 // 打印 [1, 2, 3]
 System.out.println(list);
 ```
-#####4.7、skip 方法
+######4.7、skip 方法
 
 skip 方法与 limit 正好相反，语义为：丢弃前 N 个元素；测试如下：
 ```
