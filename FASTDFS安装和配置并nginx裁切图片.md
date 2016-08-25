@@ -215,7 +215,7 @@ CORE_INCS="$CORE_INCS /usr/include/fastdfs /usr/include/fastcommon/"
 
 
 
-- 安装 Nginx 和 Nginx 第三方模块
+### 安装 Nginx 和 Nginx 第三方模块
 - http_image_filter_module是nginx提供的集成图片处理模块，支持nginx-0.7.54以后的版本，在网站访问量不是很高磁盘有限不想生成多
 - 余的图- 片文件的前提下可，就可以用它实时缩放图片，旋转图片，验证图片有效性以及获取图片宽高以及图片类型信息。 
 - 安装 Nginx 依赖包：`yum install -y gcc gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel`
