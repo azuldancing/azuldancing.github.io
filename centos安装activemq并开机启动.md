@@ -1,5 +1,5 @@
 ###安装jdk(activemq依赖jdk)
-- 1.下载jdk.tar.gz
+- 下载jdk.tar.gz
 - 配置环境变量
 ```ini
 #命令
