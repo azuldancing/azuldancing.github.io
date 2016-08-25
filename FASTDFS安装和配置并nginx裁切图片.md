@@ -332,7 +332,6 @@ http {
     
     #后裁切
     location ~ group1/M00/(.+)\.(jpg|gif|png)_([0-9]+)x([0-9]+) {
-    	alias /data0/fastdfs/storage/storage0/data;
     	ngx_fastdfs_module;
     	set $w $3;
     	set $h $4;           
