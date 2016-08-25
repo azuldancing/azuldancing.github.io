@@ -62,6 +62,7 @@ JAVACMD=/usr/local/jdk1.7.0_79/jre/bin/java
 
 在activemq.xml配置文件中，红色框中是配置的用户名和密码
 ![](images/password1.jpg)
+<span class="pl-k">
 ```
 <plugins>
      <simpleAuthenticationPlugin>
@@ -75,3 +76,5 @@ JAVACMD=/usr/local/jdk1.7.0_79/jre/bin/java
      <transportConnector name="openwire" uri="tcp://0.0.0.0:61616"/>
 </transportConnectors>
 ```
+</span>
+
