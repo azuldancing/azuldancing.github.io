@@ -16,7 +16,7 @@ nexus-2.13.0-01  sonatype-work
 export NEXUS_HOME=/usr/local/nexus/nexus-2.13.0-01/bin
 port PATH=$PATH:$JAVA_HOME/bin:$NEXUS_HOME
 //退出,环境变量生效
-[root@hadoop local]# souorce /etc/profile
+[root@hadoop local]# source /etc/profile
 ```
 4.配置nexus文件
 - 配置nexus启动文件
