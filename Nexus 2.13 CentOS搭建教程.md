@@ -41,10 +41,12 @@ NEXUS_HOME="/usr/local/nexus/nexus-2.13.0-01"
 ```
 - 配置nexus的jdk路径
 编辑/usr/local/nexus/nexus-2.13.0-01/bin/jsw/conf 下的 wrapper.conf 文件
+```
 # Set the JVM executable
 # (modify this to absolute path if you need a Java that is not on the OS path)
 # 配置 jdk中 java 可执行文件的位置(其实我感觉jre就可以，没测试，有兴趣的测试一下)
 wrapper.java.command=/usr/local/java/jdk1.7.0_79/bin/java
+```
 5.启动nexus
 nexus start
 如果提示root 无法启动，则环境变量中加入如下
