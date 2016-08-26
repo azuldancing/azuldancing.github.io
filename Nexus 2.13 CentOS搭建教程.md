@@ -18,7 +18,7 @@ port PATH=$PATH:$JAVA_HOME/bin:$NEXUS_HOME
 //退出,环境变量生效
 [root@hadoop local]# source /etc/profile
 ```
-4.配置nexus文件
+##4.配置nexus文件
 - 配置nexus启动文件
 编辑 /usr/local/nexus/nexus-2.13.0-01/bin 下的 nexus 可执行文件，主要配置部分样例如下
 ```
@@ -47,10 +47,13 @@ NEXUS_HOME="/usr/local/nexus/nexus-2.13.0-01"
 # 配置 jdk中 java 可执行文件的位置(其实我感觉jre就可以，没测试，有兴趣的测试一下)
 wrapper.java.command=/usr/local/java/jdk1.7.0_79/bin/java
 ```
-5.启动nexus
+##5.启动nexus
 nexus start
 如果提示root 无法启动，则环境变量中加入如下
 ```
 export RUN_AS_USER=root
 ```
 访问 ip:8081/nexus即可
+
+##6.maven jar包管理
+参考网络地址：<a href="http://www.blogjava.net/fancydeepin/archive/2015/06/27/maven-nexus.html">点我</a>
