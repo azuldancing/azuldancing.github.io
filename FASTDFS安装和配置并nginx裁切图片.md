@@ -367,9 +367,7 @@ http {
 
 - 报错问题解决办法
   - fastdfs 安装报错make: *** [tracker_client_thread.o] Error 1
- 
-解决方法：
-
+解决方法
 需要安装最新版本的libfastcommon，可以到github下载。
 github地址：https://github.com/happyfish100/libfastcommon
 
