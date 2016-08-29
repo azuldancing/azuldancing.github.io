@@ -396,3 +396,7 @@ github地址：https://github.com/happyfish100/libfastcommon
   /usr/sbin/groupadd -f www
   /usr/sbin/useradd -g www www
   ```
+   - nginx 图片错误ERROR - file: ../common/fdfs_global.c, line: 52, the format of filename
+  解决方案：
+  其中mod_fastdfs.conf中：
+  url_have_group_name = true  已经改为true。
