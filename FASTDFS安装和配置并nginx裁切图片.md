@@ -366,6 +366,10 @@ http {
     - 如果访问不了，或是出现其他信息看下错误立即：`vim /var/log/nginx/error.log`
 
 - 报错问题解决办法
+  - fastdfs 安装报错make: *** [tracker_client_thread.o] Error 1
+    解决方法：
+    需要安装最新版本的libfastcommon，可以到github下载。
+    github地址：https://github.com/happyfish100/libfastcommon
   - 测试配置文件时报：
   /usr/local/nginx/sbin/nginx: error while loading shared libraries: libluajit-5.1.so.2:
   cannot open shared object file: No such file or directory
