@@ -29,3 +29,16 @@ mysql_secure_installation
 ```
 mysql -u root -p
 ```
+###设置mysql字符编码
+```
+在[client]下添加default-character-set=utf8
+在[mysqld]添加character_set_server=utf8
+在[mysql]下添加default-character-set = utf8
+重启命令：/etc/init.d/mysqld start
+```
+### 授权用户访问权限
+```
+grant all privileges on *.* to 用户名@'%' identified by "密码" ;　
+//设置用户testuser，只能访问数据库test_db的表user_infor，数据库中的其他表均不能访问 ；
+grant all privileges on test_db.user_infor to testuser@localhost identified by "123456" ;　
+```
