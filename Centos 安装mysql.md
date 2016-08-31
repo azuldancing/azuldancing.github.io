@@ -1,4 +1,4 @@
-#本文以mysql6.5为例
+#本文以mysql6.5为例<a href="http://sharadchhetri.com/2013/12/26/install-mysql-server-5-6-in-centos-6-x-and-red-hat-6-x-linux/">参考</a>
 ###安装wegt
 ```
 yum install wget
