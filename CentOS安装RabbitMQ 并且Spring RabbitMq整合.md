@@ -11,15 +11,24 @@ rpm --import http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
 yum install rabbitmq-server-3.5.1-1.noarch.rpm
 ```
 ###启动RabbitMQ
-//配置为守护进程随系统自动启动，root权限下执行:
+//配置为守护进程随系统自动启动，root权限下执行
+
 chkconfig rabbitmq-server on
+
 //启动rabbitMQ服务
+
 /sbin/service rabbitmq-server start
+
 //如果报如下异常：
+
 Starting rabbitmq-server (via systemctl):  Job for rabbitmq-server.service failed. See 'systemctl status rabbitmq-server.service' and 'journalctl -xn' for details. [FAILED]
+
 尝试下面的操作：
+
 禁用 SELinux ，修改 /etc/selinux/config
+
 SELINUX=disabled
+
 修改后重启系统
 
 ###安装Web管理界面插件
