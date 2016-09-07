@@ -125,7 +125,8 @@ Hello Kafka!
      <!-- 创建kafkatemplate bean，使用的时候，只需要注入这个bean，即可使用template的send消息方法 -->  
      <bean id="KafkaTemplate" class="org.springframework.kafka.core.KafkaTemplate">  
         <constructor-arg ref="producerFactory"/>  
-        <constructor-arg name="autoFlush" value="true"/>  
+        <constructor-arg name="autoFlush" value="true"/> 
+        <!--kafka主题 -->
         <property name="defaultTopic" value="wangsen"/>  
      </bean>  
   
@@ -164,11 +165,12 @@ Hello Kafka!
         </constructor-arg>  
      </bean>  
        
-     <!-- 实际执行消息消费的类 -->  
+     <!-- 实际执行消息消费的类，见下面处理类 -->  
      <bean id="messageListernerConsumerService" class="com.stengg.kafka.KafkaConsumer"/>  
        
      <!-- 消费者容器配置信息 -->  
      <bean id="containerProperties" class="org.springframework.kafka.listener.config.ContainerProperties">  
+        <!--kafka主题 -->
         <constructor-arg value="wangsen"/>  
         <property name="messageListener" ref="messageListernerConsumerService"/>  
      </bean>  
