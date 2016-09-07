@@ -1,3 +1,53 @@
+#安装rabbitmq
+###安装erlang
+```
+yum install erlang
+```
+###安装RabbitMQ
+//本例中RabbitMQ的版本是3.5.1
+```
+wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.5.1/rabbitmq-server-3.5.1-1.noarch.rpm
+rpm --import http://www.rabbitmq.com/rabbitmq-signing-key-public.asc 
+yum install rabbitmq-server-3.5.1-1.noarch.rpm
+```
+###启动RabbitMQ
+//配置为守护进程随系统自动启动，root权限下执行:
+chkconfig rabbitmq-server on
+//启动rabbitMQ服务
+/sbin/service rabbitmq-server start
+//如果报如下异常：
+Starting rabbitmq-server (via systemctl):  Job for rabbitmq-server.service failed. See 'systemctl status rabbitmq-server.service' and 'journalctl -xn' for details. [FAILED]
+尝试下面的操作：
+禁用 SELinux ，修改 /etc/selinux/config
+SELINUX=disabled
+修改后重启系统
+
+###安装Web管理界面插件
+//终端输入：
+```
+rabbitmq-plugins enable rabbitmq_management
+//安装成功后会显示如下内容
+The following plugins have been enabled:
+mochiweb
+webmachine
+rabbitmq_web_dispatch
+amqp_client
+rabbitmq_management_agent
+rabbitmq_management
+Plugin configuration has changed. Restart RabbitMQ for changes to take effect.
+```
+###登录Web管理界面
+浏览器输入localhost：15672,账号密码全输入guest即可登录
+//注意rabbitmq默认本机localhost登录，如果非本机
+在/etc/rabbitmq/中配置 rabbitmq.config
+```
+[root@centos rabbitmq]# touch rabbitmq.config
+[root@centos rabbitmq]# vi rabbitmq.config 
+//插入如下一句话，重启即可
+[{rabbit, [{loopback_users, []}]}].
+
+```
+#配置spring和rabbitmq
 ###pom引入jar
 ```
 <!-- rabbitmq -->
