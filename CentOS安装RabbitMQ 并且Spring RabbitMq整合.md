@@ -1,4 +1,4 @@
-#安装rabbitmq
+#安装rabbitmq<a href="http://www.jianshu.com/p/d985a547eac8"> 参考</a>
 ###安装erlang
 ```
 yum install erlang
