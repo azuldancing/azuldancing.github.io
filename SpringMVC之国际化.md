@@ -39,7 +39,7 @@ public class I18nController {
 	}
 }
 ```
-3.index.jsp语言选择设置选项
+###3.index.jsp语言选择设置选项
 ```
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://www.springframework.org/tags"  prefix="spring" %>
