@@ -88,6 +88,28 @@ public class I18nController {
     <property name="cookiePath" value="/">
 </bean>
 ```
+- 以下是基于cookie的配置demo
+```
+<!-- 国际化配置 -->	
+	 <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename">
+            <!-- 定义消息资源文件的相对路径 -->
+            <value>message/message</value>
+        </property>
+    </bean>
+    <!-- 基于Cookie的本地化解析器 -->
+      <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+       <property name="cookieMaxAge" value="604800"/>
+       <property name="defaultLocale" value="en"/>
+       <property name="cookieName" value="Language"></property>
+       <property name="cookiePath" value="/"></property>
+     </bean> 
+	
+	<mvc:interceptors>  
+    <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 --> 
+    <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />  
+	</mvc:interceptors>  
+```
 四.基于URL请求的国际化的实现
 ###首先添加一个类，内容如下
 ```
@@ -155,6 +177,26 @@ public static void analyzeErrors(BindingResult result, ResponseEntity response, 
 		response.setRtCode(MsgConstants.PARAM_ERROR_CODE);
 	}
 }
+```
+- 以下是基于浏览器语言的demo
+```
+ <!-- ****************************国际化信息配置********************** -->
+	<!-- 国际化配置 -->	
+	 <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename">
+            <!-- 定义消息资源文件的相对路径 -->
+            <value>message/message</value>
+        </property>
+        
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+     
+     <bean id="localeResolver" class="com.stengg.utils.MyAcceptHeaderLocaleResolver"/>
+	
+	<mvc:interceptors>  
+    <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 --> 
+    <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />  
+	</mvc:interceptors>  
 ```
 
 保存之后就可以在浏览器就可以模拟了，语言根据浏览器语言设置
