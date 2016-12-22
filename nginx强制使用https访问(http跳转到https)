@@ -1,6 +1,7 @@
 
 需求简介
-基于nginx搭建了一个https访问的虚拟主机，监听的域名是test.com，但是很多用户不清楚https和http的区别，会很容易敲成http://test.com，这时会报出404错误，所以我需要做基于test.com域名的http向https的强制跳转
+基于nginx搭建了一个https访问的虚拟主机，监听的域名是test.com，但是很多用户不清楚https和http的区别，
+会很容易敲成http://test.com，这时会报出404错误，所以我需要做基于test.com域名的http向https的强制跳转
 
 我总结了三种方式，跟大家共享一下
 
@@ -63,7 +64,8 @@ index.html刷新网页
  
 
  
-可以看到百度很巧妙的利用meta的刷新作用，将baidu.com跳转到www.baidu.com.因此我们可以基于http://test.com的虚拟主机路径下也写一个index.html，内容就是http向https的跳转
+可以看到百度很巧妙的利用meta的刷新作用，将baidu.com跳转到www.baidu.com.因此我们可以基于http://test.com的虚拟主机路径
+下也写一个index.html，内容就是http向https的跳转
  
 index.html
 ```
@@ -87,3 +89,5 @@ server {
  ```
  
  转载自<a href="http://www.cnblogs.com/yun007/p/3739182.html">跳转</a>
+ 
+ 
